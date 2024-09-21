@@ -286,7 +286,7 @@ const InstagramSvg = ({
     <svg
       width="26px"
       height="29px"
-      viewBox="0 0 24 24"
+      viewBox="1 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
@@ -297,7 +297,6 @@ const InstagramSvg = ({
         display: "block",
       }}
     >
-      {/* Gradient definition for hover */}
       <defs>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style={{ stopColor: "#405de6", stopOpacity: 1 }} />
@@ -309,7 +308,6 @@ const InstagramSvg = ({
         </linearGradient>
       </defs>
 
-      {/* Background shape */}
       <rect
         x="0"
         y="0"
@@ -319,7 +317,6 @@ const InstagramSvg = ({
         fill={bgColor}
       ></rect>
 
-      {/* Instagram icon */}
       <g id="iconCarrier" fill={outlineColor}>
         <path
           fillRule="evenodd"
@@ -350,50 +347,7 @@ const FacebookSvg = ({
   const outlineColor = hovered ? "#ffffff" : defaultOutlineColor;
 
   return (
-    // <svg
-    //   width="60px"
-    //   height="55px"
-    //   viewBox="-10 -9 101.76 101.76"
-    //   version="1.1"
-    //   id="Shopicons"
-    //   xmlns="http://www.w3.org/2000/svg"
-    //   x="0"
-    //   y="0"
-    //   fill="#ffffff"
-    //   stroke=""
-    //   onMouseEnter={() => setHovered(true)}
-    //   onMouseLeave={() => setHovered(false)}
-    //   style={{ cursor: "pointer" }}
-    // >
-    //   <g
-    //     id="SVGRepo_bgCarrier"
-    //     strokeWidth="0"
-    //     transform="translate(14.4,14.4), scale(0.4)"
-    //   >
-    //     <rect
-    //       x="-25.88"
-    //       y="-25.88"
-    //       width="99.76"
-    //       height="99.76"
-    //       rx="50.88"
-    //       fill={bgColor}
-    //       strokeWidth="0"
-    //     ></rect>
-    //   </g>
-    //   <g
-    //     id="SVGRepo_tracerCarrier"
-    //     strokeLinecap="round"
-    //     strokeLinejoin="round"
-    //     stroke={outlineColor}
-    //     strokeWidth="1.44"
-    //   ></g>
-    //   <g id="SVGRepo_iconCarrier">
-    //     <g id="facebook_00000008112799362506850770000006163283146650373774_">
-    //       <path d="M0 .006h48v48H0v-48z" fill="none"></path>
-    //       <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm2 35.861V28h5v-4h-5v-3c0-1.103.897-2 2-2h3v-4h-3c-3.309 0-6 2.691-6 6v3h-5v4h5v11.861C14.12 38.872 8 32.144 8 24c0-8.823 7.178-16 16-16s16 7.177 16 16c0 8.144-6.12 14.872-14 15.861z"></path>
-    //     </g>
-    //   </g>
-    // </svg>
+    
     <svg
       width="30px"
       height="30px"
@@ -439,14 +393,25 @@ const FacebookSvg = ({
   );
 };
 
-const LinkedInSvg = () => {
+const LinkedInSvg = ({
+  defaultBgColor = "#111827",
+  defaultOutlineColor = "#9ca3af",
+}) => {
+  const [hovered, setHovered] = useState(false);
+
+  const bgColor = hovered ? "#0077B5" : defaultBgColor;
+  const outlineColor = hovered ? "#ffffff" : defaultOutlineColor;
+
   return (
     <svg
-      width="64px"
-      height="64px"
+      width="26px"
+      height="29px"
       viewBox="0 0 24.00 24.00"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      fill={outlineColor}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ cursor: "pointer" }}
     >
       <g
         id="SVGRepo_bgCarrier"
@@ -459,7 +424,7 @@ const LinkedInSvg = () => {
           width="24.00"
           height="24.00"
           rx="2.88"
-          fill="#7ed0ec"
+          fill={bgColor}
           strokewidth="0"
         ></rect>
       </g>
@@ -472,21 +437,21 @@ const LinkedInSvg = () => {
         {" "}
         <path
           d="M6.5 8C7.32843 8 8 7.32843 8 6.5C8 5.67157 7.32843 5 6.5 5C5.67157 5 5 5.67157 5 6.5C5 7.32843 5.67157 8 6.5 8Z"
-          fill="#9ca3af"
+          fill={outlineColor}
         ></path>{" "}
         <path
           d="M5 10C5 9.44772 5.44772 9 6 9H7C7.55228 9 8 9.44771 8 10V18C8 18.5523 7.55228 19 7 19H6C5.44772 19 5 18.5523 5 18V10Z"
-          fill="#9ca3af"
+          fill={outlineColor}
         ></path>{" "}
         <path
           d="M11 19H12C12.5523 19 13 18.5523 13 18V13.5C13 12 16 11 16 13V18.0004C16 18.5527 16.4477 19 17 19H18C18.5523 19 19 18.5523 19 18V12C19 10 17.5 9 15.5 9C13.5 9 13 10.5 13 10.5V10C13 9.44771 12.5523 9 12 9H11C10.4477 9 10 9.44772 10 10V18C10 18.5523 10.4477 19 11 19Z"
-          fill="#9ca3af"
+          fill={outlineColor}
         ></path>{" "}
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z"
-          fill="#9ca3af"
+          fill={outlineColor}
         ></path>{" "}
       </g>
     </svg>

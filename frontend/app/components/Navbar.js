@@ -62,7 +62,7 @@ const LandingPageNavbar = () => {
           <Link href="/">
             <Image
               src="/images/careerBridge.png"
-              alt="Career Bridge"
+              alt="CareerExalt"
               width={200}
               height={20}
             />
