@@ -1,81 +1,178 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfo } from "@/store/slices/userSlice";
+import Link from "next/link";
+import {
+  AppliedJobSvg,
+  DashboardSvg,
+  ProfileSvg,
+} from "@/public/images/SVG/svg";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.user);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    const localUserInfo =
+      typeof window !== "undefined"
+        ? JSON.parse(localStorage.getItem("userInfo"))
+        : null;
+    if (!userInfo && localUserInfo) {
+      dispatch(setUserInfo(localUserInfo));
+    }
+    setRole(userInfo?.role || localUserInfo?.role);
+  });
   return (
     <div className="flex">
-      {/* Sidebar */}
       <div
-        className={`h-screen bg-gray-800 text-white space-y-6 px-2 py-7 absolute inset-y-0 left-0 transform ${
-          isOpen ? 'w-64' : 'w-12'
-        } transition-all duration-300 ease-in-out md:relative`}
+        className={`h-screen bg-gray-800 text-white space-y-6 px-2 py-7 mt-16 fixed inset-y-0 left-0 transform ${
+          isOpen ? "w-64" : "w-12 md:w-16"
+        } transition-all duration-300 ease-in-out z-40`}
       >
-        {/* Logo */}
-        {/* <div className={`flex items-center justify-center ${isOpen ? 'text-2xl' : 'text-sm'}`}>
-          <span className="font-semibold">Dashboard</span>
-        </div> */}
-
-        {/* Navigation Links */}
         <nav>
-          <Link href="/candidate/dashboard">
+          <Link href={`/${role}/dashboard`}>
             <p
-              className={`flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${
-                isOpen ? '' : 'justify-center'
+              className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                isOpen ? "j" : "justify-center"
               }`}
             >
-              {/* <FiHome className="text-xl" /> */}
-              {isOpen && <span className="ml-4">Dashboard</span>}
+              <DashboardSvg isOpen={isOpen} />
+              {isOpen && <span className="ml-2 text-lg">Dashboard</span>}
             </p>
           </Link>
-          <Link href="/candidate/appliedjobs">
+          {role !== "admin" ? (
+            role === "candidate" ? (
+              <Link href="/candidate/appliedjobs">
+                <p
+                  className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                    isOpen ? "" : "justify-center"
+                  }`}
+                >
+                  <AppliedJobSvg isOpen={isOpen} />
+                  {isOpen && <span className="ml-3 text-lg">Applied Jobs</span>}
+                </p>
+              </Link>
+            ) : (
+              <>
+                <Link href="/employer/jobposts">
+                  <p
+                    className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                      isOpen ? "" : "justify-center"
+                    }`}
+                  >
+                    <AppliedJobSvg isOpen={isOpen} />
+                    {isOpen && <span className="ml-3 text-lg">Job Posts</span>}
+                  </p>
+                </Link>
+                <Link href="/employer/postjob">
+                  <p
+                    className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                      isOpen ? "" : "justify-center"
+                    }`}
+                  >
+                    <AppliedJobSvg isOpen={isOpen} />
+                    {isOpen && (
+                      <span className="ml-3 text-lg">Create Post</span>
+                    )}
+                  </p>
+                </Link>
+              </>
+            )
+          ) : (
+            <>
+              {/* <Link href="/admin/approvepost">
+                <p
+                  className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                    isOpen ? "" : "justify-center"
+                  }`}
+                >
+                  <AppliedJobSvg isOpen={isOpen} />
+                  {isOpen && (
+                    <span className="ml-3 text-lg">Approve posts</span>
+                  )}
+                </p>
+              </Link> */}
+              <Link href="/admin/setpackage">
+                <p
+                  className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                    isOpen ? "" : "justify-center"
+                  }`}
+                >
+                  <AppliedJobSvg isOpen={isOpen} />
+                  {isOpen && (
+                    <span className="ml-3 text-lg">Manage Package</span>
+                  )}
+                </p>
+              </Link>
+              {/* <Link href="/admin/manage-employer">
+                <p
+                  className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                    isOpen ? "" : "justify-center"
+                  }`}
+                >
+                  <AppliedJobSvg isOpen={isOpen} />
+                  {isOpen && (
+                    <span className="ml-3 text-lg">Manage Employer</span>
+                  )}
+                </p>
+              </Link> */}
+              {/* <Link href="/admin/manage-candidate">
+                <p
+                  className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                    isOpen ? "" : "justify-center"
+                  }`}
+                >
+                  <AppliedJobSvg isOpen={isOpen} />
+                  {isOpen && (
+                    <span className="ml-3 text-lg">Manage Candidate</span>
+                  )}
+                </p>
+              </Link> */}
+            </>
+          )}
+
+          <Link href={`/${role}/profile`}>
             <p
-              className={`flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${
-                isOpen ? '' : 'justify-center'
+              className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                isOpen ? "" : "justify-center"
               }`}
             >
-              {/* <FiBriefcase className="text-xl" /> */}
-              {isOpen && <span className="ml-4">Applied Jobs</span>}
-            </p>
-          </Link>
-          <Link href="/profile">
-            <p
-              className={`flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${
-                isOpen ? '' : 'justify-center'
-              }`}
-            >
-              {/* <FiUser className="text-xl" /> */}
+              <ProfileSvg width={32} height={29} fill={"#f3f4f6"} />
               {isOpen && <span className="ml-4">My Profile</span>}
             </p>
           </Link>
-          <Link href="/settings">
+          {/* <Link href="/">
             <p
-              className={`flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${
+              className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
                 isOpen ? '' : 'justify-center'
               }`}
             >
-              {/* <FiSettings className="text-xl" /> */}
-              {isOpen && <span className="ml-4">Settings</span>}
+              {isOpen && <span className="ml-4">Logout</span>}
             </p>
           </Link>
           <Link href="/messages">
             <p
-              className={`flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${
+              className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
                 isOpen ? '' : 'justify-center'
               }`}
             >
-              {/* <FiMessageSquare className="text-xl" /> */}
               {isOpen && <span className="ml-4">Messages</span>}
             </p>
-          </Link>
+          </Link> */}
         </nav>
       </div>
 
       {/* Toggle button */}
-      <div className="absolute top-5 left-16 md:left-64">
+      <div
+        className={`fixed top-16 ${
+          isOpen ? "left-64" : "left-16 md:left-16"
+        } transition-all duration-300 z-50`}
+      >
         <button
           className="text-white px-4 py-2 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -92,7 +189,7 @@ const Sidebar = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
-              d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+              d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
             ></path>
           </svg>
         </button>

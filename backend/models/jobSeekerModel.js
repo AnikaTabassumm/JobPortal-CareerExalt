@@ -18,17 +18,9 @@ const JobSeeker = sequelize.define('Jobseeker', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  skills: {
-    type: DataTypes.TEXT,
-  },
-  experience: {
-    type: DataTypes.TEXT,
-  },
-  education: {
-    type: DataTypes.TEXT,
-  },
-  certifications: {
-    type: DataTypes.TEXT,
+  profilePicture: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
 },
 {

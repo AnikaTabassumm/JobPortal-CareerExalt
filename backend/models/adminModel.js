@@ -3,15 +3,7 @@ const {sequelize} = require('../config/db');
 const User = require('./userModel');
 
 const Admin = sequelize.define('Admin', {
-  // userId: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: false,
-  //   references: {
-  //     model: User,
-  //     key: 'id',
-  //   },
-  //   onDelete: 'CASCADE',
-  // },
+
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,

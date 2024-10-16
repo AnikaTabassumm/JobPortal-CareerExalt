@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db");
 const Employer = require("./employerModel");
+const Package = require("./package");
 
 const JobPost = sequelize.define(
   "JobPost",
@@ -16,6 +17,22 @@ const JobPost = sequelize.define(
       references: {
         model: Employer,
         key: "userId",
+      },
+    },
+    packageId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Package,
+        key: "id",
+      },
+    },
+    company: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: {
+        model: Employer,
+        key: "companyName",
       },
     },
     category: {
@@ -44,10 +61,18 @@ const JobPost = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    status: {
-      type: DataTypes.ENUM("pending", "approved"),
-      defaultValue: "pending",
-    },
+    visibilityStatus: {
+      type: DataTypes.STRING,
+      defaultValue: 'Pending', // Status of the post, e.g., 'Open', 'Closed'
+  },
+  expirationDate: {
+      type: DataTypes.DATE,
+      // allowNull: false,
+  },
+    // status: {
+    //   type: DataTypes.ENUM("pending", "approved"),
+    //   defaultValue: "pending",
+    // },
   },
   {
     timestamps: true,

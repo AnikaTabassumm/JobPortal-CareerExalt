@@ -2,11 +2,21 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ProfileSvg } from "../public/images/SVG/svg";
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '@/store/slices/userSlice';
+import { ProfileSvg } from "@/public/images/SVG/svg";
 
 const MemberNavbar = () => {
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.user);
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+
+  };
+
   return (
-    <div className="border-white bg-white relative">
+    <div className="bg-white fixed top-0 left-0 right-0 z-50 shadow-md">
       <div className="navbar py-0 px-5">
         <div className="navbar-start">
           <div className="dropdown">
@@ -28,7 +38,7 @@ const MemberNavbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className=" text-gray-500 font-bold menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="text-gray-500 font-bold menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
                 <Link href="/">HOME</Link>
@@ -54,27 +64,26 @@ const MemberNavbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className=" text-gray-500 font-bold menu menu-horizontal px-1">
+          <ul className="text-gray-500 font-bold menu menu-horizontal px-1">
             <li>
               <Link href="/">HOME</Link>
             </li>
             <li>
-              <Link href="/about">JOBS</Link>
+              <Link href="/jobs">JOBS</Link>
             </li>
             <li>
-              <Link href="/about">COMPANIES</Link>
+              <Link href="/companies">COMPANIES</Link>
             </li>
             <li>
-              <Link href="/about">CONTACT US</Link>
+              <Link href="/contact">CONTACT US</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <button
-            className="btn bg-white border-white hover:bg-white hover:border-white"
-          >
-            <ProfileSvg size={"28"} />
-          </button>
+        <button onClick={handleLogout} disabled={loading}>
+        <Link href="/">{loading ? 'Logging out...' : 'Logout'}</Link>
+      </button>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
       </div>
     </div>

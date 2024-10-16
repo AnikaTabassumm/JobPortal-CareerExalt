@@ -8,7 +8,7 @@ import JobCategoryCard from "./components/JobCategoryCard";
 import StepsCard from "./components/StepsCard";
 import CompanyCarousel from "./components/CompanyCarousel";
 import Footer from "./components/Footer";
-import { ApplySvg, RegisterSvg, SearchSvg } from "./public/images/SVG/svg";
+import { ApplySvg, RegisterSvg, SearchSvg } from "@/public/images/SVG/svg";
 
 
 export default function Home() {
@@ -44,7 +44,7 @@ export default function Home() {
               </div>
               </form>
             </div> */}
-            <div className="flex justify-center mt-7">
+            {/* <div className="flex justify-center mt-7">
               <form className="">
                 <div className="relative">
                   <div className="w-full py-4 px-5 border rounded bg-gray-700 flex flex-col gap-6 lg:flex-row">
@@ -67,12 +67,11 @@ export default function Home() {
                       <option value="opel">Opel</option>
                       <option value="audi">Audi</option>
                     </select>
-                    {/* <SearchButton /> */}
                     <SigninButton title={"Search"} />
                   </div>
                 </div>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

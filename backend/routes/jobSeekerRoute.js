@@ -1,11 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const {getJobSeeker, updateJobSeeker, deleteJobSeeker} = require('../controllers/jobSeekerController');
-// const {protect} = require('../middleware/authMiddleware');
+const {getJobSeeker, deleteJobSeeker, uploadProfilePicture, deleteProfilePicture} = require('../controllers/jobSeekerController');
+const {protect} = require('../middleware/authMiddleware');
+const upload = require('../middleware/fileUploadMiddleware');
 
+router.route('/:id').get(protect, getJobSeeker).delete(protect, deleteJobSeeker);
+router.post(
+    "/:id/profile-picture",
+    protect, 
+    upload.single("profilePicture"), 
+    uploadProfilePicture 
+  );
+router.delete('/:id/profile-picture', protect, deleteProfilePicture);
 
-router.route('/:id').get(getJobSeeker).put(updateJobSeeker).delete(deleteJobSeeker);
 
 module.exports = router;
 
-//router.route('/:id').get(protect, getJobSeeker).put(protect, updateJobSeeker).delete(protect, deleteJobSeeker);

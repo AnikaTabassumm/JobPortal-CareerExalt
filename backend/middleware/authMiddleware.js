@@ -1,19 +1,33 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+require('dotenv').config();
+
 
 //Protecting routes and verifying jwt
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    try {
-      //Getting token from header
-      token = req.headers.authorization.split(" ")[1];
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies && req.cookies.token) {
+    token = req.cookies.token;  // Fallback to cookie if needed
+  }
 
+  console.log('Incoming Token from Header or Cookie:', token);  // Log token for debugging
+
+  if (!token) {
+    return res.status(401).json({ message: 'Not authorized, no token' });
+  }
+
+
+  // // Check if token exists in cookies
+  // if (req.cookies && req.cookies.token) {
+  //   try {
+  //     // Getting token from cookies
+  //     token = req.cookies.token;
+
+  try {
       //Verifying the token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -38,11 +52,11 @@ const protect = asyncHandler(async (req, res, next) => {
       res.status(401);
       throw new Error("Not authorized, token failed");
     }
-  }
-  if (!token) {
-    res.status(401);
-    throw new Error("Not authorized, no token!");
-  }
+  // }
+  // if (!token) {
+  //   res.status(401);
+  //   throw new Error("Not authorized, no token!");
+  // }
 });
 
 //checking for specific role
@@ -56,4 +70,4 @@ const authorize = (...roles) => {
     };
 };
 
-module.exports = {protect, authorize}
+module.exports = {protect, authorize}  

@@ -1,7 +1,8 @@
 "use client";
 
+import { ItSvg } from "@/public/images/SVG/svg";
 import React, { useState } from "react";
-import { ItSvg } from "../public/images/SVG/svg";
+
 
 const JobCategoryCard = () => {
   const [isHovered, setIsHovered] = useState(false);

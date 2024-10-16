@@ -103,15 +103,15 @@ const JobseekerSvg = () => {
   );
 };
 
-const ProfileSvg = () => {
+const ProfileSvg = ({ fill, height, width }) => {
   return (
     <svg
-      fill="#4b5563" // Darker color for a bolder look
-      viewBox="0 0 64 64"
+      fill={fill}
+      viewBox="0 0 54 64"
       xmlns="http://www.w3.org/2000/svg"
-      stroke="#4b5563" // Match stroke to fill for a cohesive look
-      width="28"
-      height="28"
+      // stroke="#4b5563"
+      width={width}
+      height={height}
       style={{
         fillRule: "evenodd",
         clipRule: "evenodd",
@@ -164,8 +164,8 @@ const ProfileSvg = () => {
 const LeftArrowSvg = () => {
   return (
     <svg
-      width="60"
-      height="64"
+      width="24"
+      height="25"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -304,18 +304,14 @@ const InstagramSvg = ({
           <stop offset="40%" style={{ stopColor: "#833ab4", stopOpacity: 1 }} />
           <stop offset="60%" style={{ stopColor: "#c13584", stopOpacity: 1 }} />
           <stop offset="80%" style={{ stopColor: "#e1306c", stopOpacity: 1 }} />
-          <stop offset="100%" style={{ stopColor: "#fd1d1d", stopOpacity: 1 }} />
+          <stop
+            offset="100%"
+            style={{ stopColor: "#fd1d1d", stopOpacity: 1 }}
+          />
         </linearGradient>
       </defs>
 
-      <rect
-        x="0"
-        y="0"
-        width="24"
-        height="24"
-        rx="6"
-        fill={bgColor}
-      ></rect>
+      <rect x="0" y="0" width="24" height="24" rx="6" fill={bgColor}></rect>
 
       <g id="iconCarrier" fill={outlineColor}>
         <path
@@ -323,9 +319,7 @@ const InstagramSvg = ({
           clipRule="evenodd"
           d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
         ></path>
-        <path
-          d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
-        ></path>
+        <path d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"></path>
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -335,7 +329,6 @@ const InstagramSvg = ({
     </svg>
   );
 };
-
 
 const FacebookSvg = ({
   defaultBgColor = "#111827",
@@ -347,7 +340,6 @@ const FacebookSvg = ({
   const outlineColor = hovered ? "#ffffff" : defaultOutlineColor;
 
   return (
-    
     <svg
       width="30px"
       height="30px"
@@ -449,7 +441,7 @@ const LinkedInSvg = ({
         ></path>{" "}
         <path
           fill-rule="evenodd"
-          clip-rule="evenodd"
+          clipRule="evenodd"
           d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z"
           fill={outlineColor}
         ></path>{" "}
@@ -487,6 +479,217 @@ const LockSvg = () => {
   );
 };
 
+const DashboardSvg = ({ isOpen }) => {
+  return (
+    <svg
+      width={isOpen ? "34px" : "64px"} // Adjusts size based on sidebar state
+      height={isOpen ? "34px" : "44px"}
+      viewBox="0 0 988 990.00"
+      data-name="Layer 2"
+      id="Layer_2"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="#f3f4f6"
+      x="2"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <defs></defs>
+        <path
+          class="cls-1"
+          d="M540.53,785.06H774.66c7.7,0,14-5.51,14-12.24V465.92c0-6.74-6.3-12.25-14-12.25H540.53c-7.7,0-14,5.51-14,12.25V721.76"
+        ></path>
+        <rect
+          class="cls-1"
+          height="191.23"
+          rx="12"
+          width="262.13"
+          x="211.34"
+          y="593.84"
+        ></rect>
+        <path
+          class="cls-1"
+          d="M459.47,546.33H225.34c-7.7,0-14-5.51-14-12.25V227.18c0-6.73,6.3-12.24,14-12.24H459.47c7.7,0,14,5.51,14,12.24V483"
+        ></path>
+        <rect
+          class="cls-1"
+          height="191.23"
+          rx="12"
+          transform="translate(1315.19 621.1) rotate(-180)"
+          width="262.13"
+          x="526.53"
+          y="214.94"
+        ></rect>
+      </g>
+    </svg>
+  );
+};
+
+const AppliedJobSvg = ({ isOpen }) => {
+  return (
+    <svg
+      width={isOpen ? "32.5px" : "32px"}
+      height={isOpen ? "32px" : "32px"}
+      viewBox="0 0 28 34"
+      data-name="Layer 1"
+      className={isOpen ? "ps-1" : ""}
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="#f3f4f6"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <defs></defs>
+        <title></title>
+        <path
+          class="cls-1"
+          d="M28,8H21V6a2,2,0,0,0-2-2H13a2,2,0,0,0-2,2V8H4a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10A2,2,0,0,0,28,8ZM13,6h6V8H13Zm15,4v9H4V10ZM4,26V21H28v5Z"
+        ></path>
+        <path class="cls-1" d="M15,18h2a1,1,0,0,0,0-2H15a1,1,0,0,0,0,2Z"></path>
+      </g>
+    </svg>
+  );
+};
+
+const DeleteSvg = () => {
+  return (
+    <svg
+      width="20px"
+      height="20px"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="#4b5563"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path
+          d="M10 11V17"
+          stroke="#4b5563"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+        <path
+          d="M14 11V17"
+          stroke="#4b5563"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+        <path
+          d="M4 7H20"
+          stroke="#4b5563"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+        <path
+          d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
+          stroke="#4b5563"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+        <path
+          d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+          stroke="#4b5563"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+      </g>
+    </svg>
+  );
+};
+
+const EditSvg = () => {
+  return (
+    <svg
+      width="20px"
+      height="20px"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path
+          fill-rule="evenodd"
+          clipRule="evenodd"
+          d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
+          fill="#4b5563"
+        ></path>{" "}
+      </g>
+    </svg>
+  );
+};
+
+const LogoutSvg = () => {
+  return (
+    <svg
+      width="20px"
+      height="20px"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="#ffffff"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path
+          d="M21 12L13 12"
+          stroke="#ffffff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+        <path
+          d="M18 15L20.913 12.087V12.087C20.961 12.039 20.961 11.961 20.913 11.913V11.913L18 9"
+          stroke="#ffffff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+        <path
+          d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19"
+          stroke="#ffffff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+      </g>
+    </svg>
+  );
+};
+
 export {
   LeftArrowSvg,
   EmployerSvg,
@@ -500,4 +703,9 @@ export {
   FacebookSvg,
   LinkedInSvg,
   LockSvg,
+  DashboardSvg,
+  AppliedJobSvg,
+  DeleteSvg,
+  EditSvg,
+  LogoutSvg,
 };

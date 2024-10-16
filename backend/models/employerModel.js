@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const {sequelize} = require('../config/db');
 const User = require('./userModel');
+const Package = require('./package');
 
 const Employer = sequelize.define('Employer', {
 
@@ -17,13 +18,21 @@ const Employer = sequelize.define('Employer', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  // packageId: {
+  //   type: DataTypes.INTEGER,
+  //   defaultValue: 0,
+  //   references: {
+  //     model: Package,
+  //     key: "id",
+  //   },
+  // },
   companyName: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   companyLogo: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   industry: {
     type: DataTypes.STRING,

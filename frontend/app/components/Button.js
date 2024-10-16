@@ -33,4 +33,14 @@ const RoleButton = ({ image, title, role, onClick }) => {
   );
 };
 
+
+// const PostJobButton = () => {
+//   return (
+//     <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+//           Post Job
+//         </button>
+//   )
+// }
+
+
 export { SignupButton, SigninButton, RoleButton };

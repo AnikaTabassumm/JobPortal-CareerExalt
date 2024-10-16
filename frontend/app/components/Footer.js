@@ -1,9 +1,9 @@
 import React from 'react'
-import { FacebookSvg, InstagramSvg, LinkedInSvg } from '../public/images/SVG/svg';
+import { FacebookSvg, InstagramSvg, LinkedInSvg } from '@/public/images/SVG/svg';
 
 const Footer = () => {
     return (
-      <footer className="bg-gray-900 text-gray-300 p-10 lg:px-16 md:pt-12">
+      <footer className="bg-gray-900 text-gray-300 p-10 lg:px-16 md:pt-12 z-60">
         <div className="container mx-auto flex flex-wrap justify-between items-start px-4 md:px-8">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h3 className="text-lg font-bold text-white mb-3">About CareerExalt</h3>

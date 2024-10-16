@@ -14,6 +14,14 @@ const OTP = sequelize.define("OTP", {
     type: DataTypes.DATE,
     allowNull: false,
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+ updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
 });
 
 module.exports = OTP;
