@@ -58,6 +58,26 @@ export const getJobPostById = createAsyncThunk(
   }
 );
 
+export const fetchCategoriesWithOpenPositions = createAsyncThunk(
+  'jobPost/fetchCategoriesWithOpenPositions',
+  async (_, { rejectWithValue }) => {
+    try {
+      // const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
+      const response = await api.get('/api/jobPosts/categories-with-open-positions'
+      //   , {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      //   withCredentials: true,
+      // }
+    );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message || 'Failed to fetch job categories');
+    }
+  }
+);
+
 export const getJobPostsByEmployer = createAsyncThunk(
   'jobPost/getJobPostsByEmployer',
   async (employerId, { rejectWithValue }) => {
@@ -216,6 +236,18 @@ const jobPostSlice = createSlice({
         state.message = 'Job post deleted successfully';
       })
       .addCase(deleteJobPost.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchCategoriesWithOpenPositions.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCategoriesWithOpenPositions.fulfilled, (state, action) => {
+        state.loading = false;
+        state.categoriesWithOpenPositions = action.payload;
+      })
+      .addCase(fetchCategoriesWithOpenPositions.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

@@ -80,14 +80,17 @@ export default function Home() {
           Job Categories
         </h1>
         <div className="flex flex-wrap gap-7 justify-center w-full h-full px-40">
+          <JobCategoryCard cat={'Engineering'}/>
+          <JobCategoryCard cat={'Marketing'}/>
+          <JobCategoryCard cat={'Design'}/>
+          <JobCategoryCard cat={'Sales'}/>
+          <JobCategoryCard cat={'Management'}/>
+          <JobCategoryCard cat={'Architecture'}/>
+          <JobCategoryCard cat={'Public Representative'}/>
+          {/* <JobCategoryCard />
           <JobCategoryCard />
           <JobCategoryCard />
-          <JobCategoryCard />
-          <JobCategoryCard />
-          <JobCategoryCard />
-          <JobCategoryCard />
-          <JobCategoryCard />
-          <JobCategoryCard />
+          <JobCategoryCard /> */}
         </div>
       </div>
       <div className="bg-gray-100 px-14 py-16 md:py-20 md:px-16 lg:p-24">

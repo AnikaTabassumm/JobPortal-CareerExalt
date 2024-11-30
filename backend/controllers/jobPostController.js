@@ -24,9 +24,6 @@ const createJobPost = asyncHandler(async (req, res) => {
   const pack = await Package.findOne({ where: { id: packageId } });
 
 
-  // // Calculate expiration date based on package's `postVisibilityDays`
-  // const expirationDate = new Date();
-  // expirationDate.setDate(expirationDate.getDate() + pack.postVisibilityDays);
 
   const newJobPost = await JobPost.create({
     employerId: employer.userId,
@@ -45,6 +42,29 @@ const createJobPost = asyncHandler(async (req, res) => {
 
   res.status(201).json(newJobPost);
 });
+
+const getCategoriesWithOpenPositions = async (req, res) => {
+  try {
+    console.log("Request received for /categories-with-open-positions");
+    const categoriesWithCount = await JobPost.findAll({
+      where: { visibilityStatus: 'Open' }, 
+      attributes: [
+        'category',
+        [Sequelize.fn('COUNT', Sequelize.col('id')), 'openPositionsCount']
+      ],
+      group: ['category']
+    });
+
+    if (!categoriesWithCount || categoriesWithCount.length === 0) {
+      return res.status(404).json({ message: 'No open job posts found' });
+    }
+
+    res.json(categoriesWithCount);
+  } catch (error) {
+    console.error('Error fetching job categories:', error);
+    res.status(500).json({ message: 'Failed to fetch job categories', error });
+  }
+};
 
 // @desc Get all job posts
 // @route GET /api/jobposts/all
@@ -150,5 +170,6 @@ module.exports = {
   getJobPostById,
   getJobPostsByEmployer,
   updateJobPost,
-  deleteJobPost
+  deleteJobPost,
+  getCategoriesWithOpenPositions
 };

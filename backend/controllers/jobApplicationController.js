@@ -17,7 +17,7 @@ const createJobApplication = asyncHandler(async (req, res) => {
         throw new Error('Please upload both resume and cover letter');
     }
 
-    const resumeFile = req.files.resume[0]; // Assuming you are using a library like 'express-fileupload' or 'multer'
+    const resumeFile = req.files.resume[0]; 
     const coverLetterFile = req.files.coverLetter[0];
 
     const jobseeker = await JobSeeker.findOne({ where: { userId: jobSeekerId } });
@@ -34,8 +34,7 @@ const createJobApplication = asyncHandler(async (req, res) => {
         throw new Error('Job Post not found!');
     }
 
-    // const resume = req.files.resume[0].path; // multer stores files in an array
-    // const coverLetter = req.files.coverLetter[0].path;
+
 
     try {
         const resumePath = `uploads/${resumeFile.filename}`;
@@ -82,13 +81,8 @@ const getJobApplicationsByJobSeekerId = asyncHandler(async (req, res) => {
 
     const applications = await JobApplication.findAll({
         where: { jobSeekerId },
-        include: ['JobPost'] // Include JobPost or any other related model as needed
+        include: ['JobPost'] 
     });
-
-    // if (!applications.length) {
-    //     res.status(404);
-    //     throw new Error('No job applications found for this job seeker.');
-    // }
 
     res.status(200).json(applications);
 });
@@ -102,7 +96,7 @@ const getJobApplication = asyncHandler(async (req, res) => {
     // Fetch job applications for the specified job post
     const applications = await JobApplication.findAll({
         where: { jobPostId },
-        include: [{ model: JobSeeker, attributes: ['userId', 'name'] }] // Include seeker info as needed
+        include: [{ model: JobSeeker, attributes: ['userId', 'name'] }] 
     });
 
     if (!applications.length) {
@@ -126,7 +120,7 @@ const getJobApplicationByJobPostId = asyncHandler(async (req, res) => {
     });
 
     if (!jobApplications || jobApplications.length === 0) {
-        res.status(404);
+        // res.status(404);
         throw new Error('No job applications found for this job post');
     }
 

@@ -84,7 +84,14 @@ export const resetPassword = createAsyncThunk(
   "user/resetPassword",
   async (newPassData, { rejectWithValue }) => {
     try {
-      const response = await api.post("/api/users/reset-password", newPassData);
+      const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
+      console.log('Token:', token);
+      const response = await api.post("/api/users/reset-password", newPassData, { 
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
       return response.data; // Password reset success message
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -100,7 +107,7 @@ export const logoutUser = createAsyncThunk(
       console.log('Token:', token);
 
       // Send a POST request to logout
-      const response = await api.post('/api/users/logout', {}, { // Change the path if needed
+      const response = await api.post('/api/users/logout', {}, { 
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -123,7 +130,7 @@ export const logoutUser = createAsyncThunk(
 
 const initialState = {
   token: null,
-  // other initial state...
+
 };
 
 const userSlice = createSlice({

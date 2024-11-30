@@ -47,6 +47,7 @@ const Sidebar = () => {
           </Link>
           {role !== "admin" ? (
             role === "candidate" ? (
+              <>
               <Link href="/candidate/appliedjobs">
                 <p
                   className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
@@ -57,6 +58,17 @@ const Sidebar = () => {
                   {isOpen && <span className="ml-3 text-lg">Applied Jobs</span>}
                 </p>
               </Link>
+              <Link href={`/candidate/profile`}>
+            <p
+              className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                isOpen ? "" : "justify-center"
+              }`}
+            >
+              <ProfileSvg width={32} height={29} fill={"#f3f4f6"} />
+              {isOpen && <span className="ml-4">My Profile</span>}
+            </p>
+          </Link>
+</>
             ) : (
               <>
                 <Link href="/employer/jobposts">
@@ -81,6 +93,16 @@ const Sidebar = () => {
                     )}
                   </p>
                 </Link>
+                <Link href={`/employer/profile`}>
+            <p
+              className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
+                isOpen ? "" : "justify-center"
+              }`}
+            >
+              <ProfileSvg width={32} height={29} fill={"#f3f4f6"} />
+              {isOpen && <span className="ml-4">My Profile</span>}
+            </p>
+          </Link>
               </>
             )
           ) : (
@@ -136,7 +158,7 @@ const Sidebar = () => {
             </>
           )}
 
-          <Link href={`/${role}/profile`}>
+          {/* <Link href={`/${role}/profile`}>
             <p
               className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${
                 isOpen ? "" : "justify-center"
@@ -145,7 +167,7 @@ const Sidebar = () => {
               <ProfileSvg width={32} height={29} fill={"#f3f4f6"} />
               {isOpen && <span className="ml-4">My Profile</span>}
             </p>
-          </Link>
+          </Link> */}
           {/* <Link href="/">
             <p
               className={`flex items-center p-1 rounded transition duration-200 hover:bg-gray-700 ${

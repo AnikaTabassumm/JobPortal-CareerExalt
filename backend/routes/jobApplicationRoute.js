@@ -24,6 +24,6 @@ router
   .delete(protect, deleteJobApplication);
 
 router.get('/job-seeker/:jobSeekerId', protect, getJobApplicationsByJobSeekerId);
-router.put('/:applicationId/status', updateJobApplicationStatus);
+router.put('/:id/status', updateJobApplicationStatus);
 
 module.exports = router;

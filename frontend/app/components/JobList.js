@@ -21,8 +21,10 @@ const JobList = () => {
 
   const handleJobClick = (id) => {
     window.open(`/job-details/${id}`, '_blank'); // Navigate to job details page
-};
+  };
 
+  // Filter job posts where visibilityStatus is 'open'
+  const openJobPosts = jobPosts?.filter((job) => job.visibilityStatus === 'Open');
 
   return (
     <div>
@@ -32,14 +34,14 @@ const JobList = () => {
         <p>Error loading job posts: {error}</p>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {jobPosts && jobPosts.length > 0 ? (
-            jobPosts.map((job) => (
+          {openJobPosts && openJobPosts.length > 0 ? (
+            openJobPosts.map((job) => (
               <div
-              onClick={() => handleJobClick(job.id)}
+                onClick={() => handleJobClick(job.id)}
                 key={job.id}
                 className="bg-white shadow-md rounded-lg p-6 flex items-center space-x-4"
               >
-                 <img
+                <img
                   src={`http://localhost:5000/${job.Employer?.companyLogo}`}
                   alt={`${job.company} logo`}
                   className="w-16 h-16 rounded-full object-cover"
@@ -52,7 +54,7 @@ const JobList = () => {
               </div>
             ))
           ) : (
-            <p>No job posts available.</p>
+            <p>No open job posts available.</p>
           )}
         </div>
       )}

@@ -108,67 +108,6 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 
-//@desc Register Admin
-//@route POST/api/users/admin/register
-//@access Public
-// const registerAdmin = asyncHandler(async (req, res) => {
-//   const { name, email, password } = req.body;
-
-//   if (!name || !email || !password) {
-//     res.status(400);
-//     throw new Error("Please add all fields");
-//   }
-//   //Checking if user exists
-//   const userExists = await User.findOne({ where: { email } });
-
-//   if (userExists) {
-//     res.status(400);
-//     throw new Error("User already exists");
-//   }
-
-//   //hashing password
-//   const salt = await bcrypt.genSalt(10);
-//   const hashedPassword = await bcrypt.hash(password, salt);
-
-//   //Creating user
-//   const transaction = await sequelize.transaction();
-
-//   try {
-//     const user = await User.create(
-//       {
-//         name,
-//         email,
-//         password: hashedPassword,
-//         role: "admin",
-//       },
-//       { transaction }
-//     );
-
-//     // if (user) {
-//     await Admin.create(
-//       {
-//         userId: user.id,
-//         userName: user.name,
-//         userEmail: user.email,
-//         // code,
-//       },
-//       { transaction }
-//     );
-//     // }
-
-//     await transaction.commit();
-
-//     try {
-//       await createAndSendOTP(user.email, user.id);
-//       res.json({ message: 'OTP sent. Please verify OTP to confirm registraion.' });
-//     } catch (error) {
-//       res.status(500).json({ message: 'Failed to send OTP' });
-//     }
-//   } catch (error) {
-//     await transaction.rollback();
-//     res.status(400).send("Error creating user data");
-//   }
-// });
 
 // //@desc Authenticate a user
 // //@route POST/api/users/login
@@ -327,10 +266,10 @@ const getUser = asyncHandler(async (req, res) => {
 // userController.js
 const logout = async(req, res) => {
   res.clearCookie('token', {
-    path: '/', // Ensure this matches the default or specified path when setting the cookie
-    httpOnly: false, // Same as the original setting
-    secure: process.env.NODE_ENV === 'production', // Same as the original setting
-    sameSite: 'Lax', // Same as the original setting
+    path: '/', 
+    httpOnly: false, 
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'Lax', 
   });
 
   res.status(200).json({ message: "Logged out successfully" });

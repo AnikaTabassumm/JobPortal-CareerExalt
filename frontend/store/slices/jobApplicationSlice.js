@@ -37,7 +37,7 @@ export const createJobApplication = createAsyncThunk(
             const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
 
             const response = await api.put(`/api/jobApplications/${applicationId}/status`, 
-            { status }, {
+             {status} , {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true,
             });

@@ -1,20 +1,24 @@
 "use client";
 
-import { fetchJobApplicationsByJobPostId, updateJobApplicationStatus } from "@/store/slices/jobApplicationSlice";
+import {
+  fetchJobApplicationsByJobPostId,
+  updateJobApplicationStatus,
+} from "@/store/slices/jobApplicationSlice";
 import { fetchJobSeeker } from "@/store/slices/jobSeekerSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
 const ApplicantList = ({ jobId }) => {
   const dispatch = useDispatch();
-  const { appli } = useSelector((state) => state.jobApplication)
+  const { appli } = useSelector((state) => state.jobApplication);
   const [applicationsList, setApplicationsList] = useState([]);
   const [applicants, setApplicants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [pdfFile, setPdfFile] = useState(null);
   const [showPdf, setShowPdf] = useState(false);
+  const [stat, setStat] = useState('');
+
 
   useEffect(() => {
     if (jobId) {
@@ -41,6 +45,7 @@ const ApplicantList = ({ jobId }) => {
                       ...jobSeeker.payload,
                       resume: application.resume,
                       coverLetter: application.coverLetter,
+                      applicationId: application.id,
                     };
                   }
                 );
@@ -68,14 +73,20 @@ const ApplicantList = ({ jobId }) => {
   console.log("Applicant object:", applicants);
 
   const handleChange = (event, applicationId) => {
+    console.log('appli id: ', applicationId)
     const status = event.target.value;
-    dispatch(updateJobApplicationStatus({ applicationId, status }));
-};
+    setStat(status);
+    if (applicationId) {
+      dispatch(updateJobApplicationStatus({ applicationId, status }));
+    } else {
+      console.error("Application ID is undefined");
+    }
+  };
+  
 
   const handleRowClick = (id) => {
     window.open(`/candidate-profile/${id}`, "_blank");
   };
-
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -150,13 +161,16 @@ const ApplicantList = ({ jobId }) => {
                       </button>
                     </td>
                     <td>
-                    <select className="bg-white text-black border shadow" onChange={(e) => handleChange(e, applicant.id)} defaultValue="">
-            <option value="">Select Status</option>
-            <option value="accepted">Accepted</option>
-            <option value="rejected">Rejected</option>
-        </select>
+                      <select
+                        className="bg-white text-black border shadow"
+                        onChange={(e) => handleChange(e, applicant.applicationId)}
+                        defaultValue={stat}
+                      >
+                        <option className="" value="">{'Select Status' || stat}</option>
+                        <option value="accepted">accepted</option>
+                        <option value="rejected">rejected</option>
+                      </select>
                     </td>
-                   
                   </tr>
                 ))}
               </tbody>

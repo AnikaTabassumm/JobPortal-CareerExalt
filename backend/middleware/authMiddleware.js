@@ -14,7 +14,7 @@ const protect = asyncHandler(async (req, res, next) => {
     token = req.cookies.token;  // Fallback to cookie if needed
   }
 
-  console.log('Incoming Token from Header or Cookie:', token);  // Log token for debugging
+  console.log('Incoming Token from Header or Cookie:', token);  
 
   if (!token) {
     return res.status(401).json({ message: 'Not authorized, no token' });

@@ -14,7 +14,7 @@ const page = () => {
 
         {/* Content Area */}
         <div className="flex-grow overflow-y-auto h-screen bg-gray-100 ml-12 md:ml-16">
-          <h1 className="font-bold text-3xl ps-10">Dashboard</h1>
+          <h1 className="flex justify-center items-center font-bold text-4xl ps-10 text-black pt-20">Wlcome to Admin Dashboard</h1>
         </div>
       </div>
 

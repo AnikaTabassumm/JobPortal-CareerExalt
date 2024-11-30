@@ -165,9 +165,9 @@ const LandingPageNavbar = () => {
               <li>
                 <Link href="/companies">COMPANIES</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/contactus">CONTACT US</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <Link href="/">

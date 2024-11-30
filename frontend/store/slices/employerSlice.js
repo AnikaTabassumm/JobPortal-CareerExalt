@@ -20,6 +20,24 @@ export const getEmployer = createAsyncThunk(
   }
 );
 
+export const getAllEmployers = createAsyncThunk(
+  'employer/getAllEmployers',
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
+      const response = await api.get('/api/employers/all', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message || 'Failed to fetch employers');
+    }
+  }
+);
+
 export const updateEmployer = createAsyncThunk(
   'employer/updateEmployer',
   async ({ id, employerData }, { rejectWithValue }) => {
@@ -105,6 +123,7 @@ const employerSlice = createSlice({
   name: 'employer',
   initialState: {
     employer: null,
+    employers: [],
     companyLogo: null,
     loading: false,
     error: null,
@@ -183,6 +202,18 @@ const employerSlice = createSlice({
         state.message = action.payload.message;
       })
       .addCase(deleteEmployer.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getAllEmployers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllEmployers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.employers = action.payload;
+      })
+      .addCase(getAllEmployers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

@@ -72,13 +72,7 @@ const createOrder = async (req, res) => {
   };
 
   console.log('data: ', paymentData);
-  // const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live)
-  // sslcz.init(data).then(apiResponse => {
-  //     // Redirect the user to payment gateway
-  //     let GatewayPageURL = apiResponse.GatewayPageURL
-  //     res.send({ url: GatewayPageURL })
-  //     console.log('Redirecting to: ', GatewayPageURL)
-  // });
+
   const sslResponse = await sslcz.init(paymentData);
   if (sslResponse?.GatewayPageURL) {
     // Create the order in the database only if SSLCommerz session is successfully initialized

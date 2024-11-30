@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 
 connectDB();
 
-console.log('JWT_SECRET:', process.env.JWT_SECRET);
+// console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
 const cors = require('cors');
 const app = express();
@@ -39,11 +39,7 @@ app.use('/api/orders', require('./routes/orderRoute'));
 app.use('/api/packages', require('./routes/packageRoute'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Route to get the PDF file (optional)
-// app.get('/uploads/:filename', (req, res) => {
-//   const filePath = path.join(__dirname, 'uploads', req.params.filename);
-//   res.download(filePath); // This will set headers to download
-// });
+
 
 app.use(errorHandler);
 

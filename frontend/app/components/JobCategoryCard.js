@@ -4,7 +4,7 @@ import { ItSvg } from "@/public/images/SVG/svg";
 import React, { useState } from "react";
 
 
-const JobCategoryCard = () => {
+const JobCategoryCard = ({cat}) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
@@ -19,15 +19,16 @@ const JobCategoryCard = () => {
       <div className="flex justify-center py-2">
         <ItSvg />
       </div>
-      <p className="text-black text-lg">IT Engineer</p>
-      <p
+      <p className="text-black text-lg">{cat}</p>
+      {/* <p
         className="text-xs font-semibold"
         style={{ color: isHovered ? "#007BFF" : "inherit" }}
       >
         3 open positions
-      </p>
+      </p> */}
     </div>
   );
 };
 
-export default JobCategoryCard;
+export default JobCategoryCard; 
+
