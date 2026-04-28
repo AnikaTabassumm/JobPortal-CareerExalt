@@ -27,3 +27,7 @@
 
 ### Package Input Page (For Admin):
 <img width="650" alt="image" src="https://github.com/user-attachments/assets/a7d8da9f-d0fa-45ec-8cd3-6438d8008e79" />
+
+### Database:
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/5a4ffbb3-861d-4657-b673-3be8bb942864" />
+
